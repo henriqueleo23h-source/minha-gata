@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jogo do Leonardo</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#87CEEB;
+overflow:hidden;
+font-family:Arial;
+}
+
+#game{
+width:100%;
+height:100vh;
+position:relative;
+}
+
+.rua{
+position:absolute;
+bottom:0;
+width:100%;
+height:120px;
+background:#3a3a3a;
+}
+
+#leonardo{
+position:absolute;
+bottom:120px;
+left:80px;
+width:95px;
+}
+
+#megan{
+position:absolute;
+bottom:120px;
+width:60px;
+right:-120px;
+}
+
+.pulo{
+animation:pular 700ms ease;
+}
+
+@keyframes pular{
+
+0%{bottom:120px;}
+50%{bottom:280px;}
+100%{bottom:120px;}
+
+}
+
+#fase{
+position:absolute;
+top:20px;
+left:20px;
+background:black;
+color:white;
+padding:10px 15px;
+border-radius:10px;
+font-size:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="game">
+
+<div id="fase">Fase 1</div>
+
+<img id="leonardo" src="leonardo.gif">
+<img id="megan" src="megan.png">
+
+<div class="rua"></div>
+
+</div>
+
+<script>
+
+const leonardo = document.getElementById("leonardo")
+const megan = document.getElementById("megan")
+const faseText = document.getElementById("fase")
+
+let fase = 1
+let velocidade = 2.5
+let posicao = window.innerWidth
+
+function pular(){
+
+if(leonardo.classList.contains("pulo")) return
+
+leonardo.classList.add("pulo")
+
+setTimeout(()=>{
+leonardo.classList.remove("pulo")
+},700)
+
+}
+
+document.addEventListener("keydown",pular)
+document.addEventListener("touchstart",pular)
+
+function reiniciar(){
+
+alert("Que isso princesa, melhore kkkkkkkkkk")
+
+fase = 1
+velocidade = 2.5
+posicao = window.innerWidth
+
+faseText.innerHTML = "Fase 1"
+
+}
+
+function proximaFase(){
+
+fase++
+
+if(fase > 7){
+
+alert("Parabéns vida te amo você é foda ❤️")
+
+fase = 1
+posicao = window.innerWidth
+faseText.innerHTML = "Fase 1"
+return
+
+}
+
+faseText.innerHTML = "Fase " + fase
+
+posicao = window.innerWidth
+
+}
+
+function gameLoop(){
+
+posicao -= velocidade
+
+megan.style.left = posicao + "px"
+
+const meganRect = megan.getBoundingClientRect()
+const leoRect = leonardo.getBoundingClientRect()
+
+if(
+leoRect.right > meganRect.left &&
+leoRect.left < meganRect.right &&
+leoRect.bottom > meganRect.top
+){
+
+// pulou em cima
+if(leoRect.bottom < meganRect.top + 20){
+
+proximaFase()
+
+}
+
+// bateu de lado
+else{
+
+reiniciar()
+
+}
+
+}
+
+if(posicao < -100){
+
+posicao = window.innerWidth
+
+}
+
+requestAnimationFrame(gameLoop)
+
+}
+
+gameLoop()
+
+</script>
+
+</body>
+</html>
+
+

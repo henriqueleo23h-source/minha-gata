@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login</title>
+
+<style>
+
+body{
+background:#111;
+font-family:Arial;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.container{
+background:#1b1b1b;
+padding:40px;
+border-radius:15px;
+text-align:center;
+width:320px;
+color:white;
+}
+
+.img-log{
+width:180px;
+border-radius:10px;
+margin-bottom:15px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:10px;
+border:none;
+border-radius:6px;
+}
+
+button{
+margin-top:15px;
+width:100%;
+padding:10px;
+border:none;
+background:#ff0066;
+color:white;
+font-size:16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.dica{
+margin-top:10px;
+font-size:13px;
+color:#ccc;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Bem-vinda Beatriz ❤️</h2>
+
+<img src="foto.jpg" class="img-log">
+
+<input type="password" id="password" placeholder="Digite a senha">
+
+<button onclick="log()">Entrar</button>
+
+<div class="dica">
+Dica: data de um dos dias mais importantes das nossas vidas?
+</div>
+
+</div>
+
+<script>
+
+function log(){
+
+var senha = document.getElementById("password").value
+
+if(senha == "2007"){
+
+alert("Parabéns vida ❤️")
+
+window.location.href = "jogo.html"
+
+}else{
+
+alert("Pensa mais um pouco 😅")
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
