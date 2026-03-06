@@ -166,6 +166,22 @@ carregarPergunta()
 pergunta.innerHTML = "Quiz finalizado!"
 document.querySelector("ul").style.display="none"
 pontosTxt.innerHTML = "Pontuação: " + pontos + "/" + perguntas.length
+
+// Se acertou tudo, vai para a página da pergunta
+if(pontos === perguntas.length){
+  setTimeout(function(){
+    window.location.href = "pagina_pergunta_sim_nao.html"
+  }, 1200)
+}else{
+  // Se errou alguma, tenta de novo
+  setTimeout(function(){
+    alert("Ops! Você errou alguma 😅 Vamos tentar de novo!")
+    atual = 0
+    pontos = 0
+    document.querySelector("ul").style.display="block"
+    carregarPergunta()
+  }, 1200)
+}
 }
 
 }
